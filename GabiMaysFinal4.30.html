@@ -1,0 +1,868 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+		<title>Running on caffeine: How much is too much?</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" / >
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+
+		<!-- THESE ARE THE CSS FILES I ADDED -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Domine:400,700"/>
+
+        <!-- THESE ARE THE JAVASCRIPT FILES I ADDED -->
+
+		<script type="text/javascript" src="http://www.columbiamissourian.com/app/projects/Project_files/js/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="http://www.columbiamissourian.com/app/projects/Project_files/js/jquery-ui-1.10.2.custom.js"></script>
+		<script type="text/javascript" src="http://www.columbiamissourian.com/app/projects/Project_files/js/jquery.ui.tooltip.js"></script>
+		<script type="text/javascript" src="http://www.columbiamissourian.com/app/projects/Project_files/js/jquery.cycle.all.js"></script>
+
+
+		<!-- THE CSS STYLES START HERE -->
+		<style>
+			/*! jQuery UI - v1.10.2 - 2013-03-17
+			* http://jqueryui.com
+			* Includes: jquery.ui.core.css, jquery.ui.resizable.css, jquery.ui.selectable.css, jquery.ui.accordion.css, jquery.ui.autocomplete.css, jquery.ui.button.css, jquery.ui.datepicker.css, jquery.ui.dialog.css, jquery.ui.menu.css, jquery.ui.progressbar.css, jquery.ui.slider.css, jquery.ui.spinner.css, jquery.ui.tabs.css, jquery.ui.tooltip.css
+			* Copyright 2013 jQuery Foundation and other contributors Licensed MIT */
+
+			h1 {
+				font-size: 3em;
+			    line-height: 1.4em;
+			}
+
+			p.body, a {
+				color: black;
+			    font-size: 16px;
+			    line-height: 27px;
+			    margin-bottom: 24px;
+			}
+
+			.domine, h3 {
+				 font-family:  'Domine', serif;
+			}
+
+			.base {
+				background-attachment: fixed;
+				height: 400px;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			.clear {clear: both;}
+
+			/* INTRO SECTION */
+
+			.coveropener {
+				position: relative;
+				background-repeat: no-repeat;
+  			background-position: center;
+				background-size: cover;
+  			height: 100vh;
+			}
+
+			.centered {
+				  margin: 0;
+				  position: absolute;
+				  top: 50%;
+				  left: 50%;
+				  -ms-transform: translate(-50%, -50%);
+				  transform: translate(-50%, -50%);
+				max-width: 684px;
+				max-height: 400px;
+				width: 90%;
+				height: 90%;
+			    text-align: center;
+			    font-family: inerit;
+			    line-height: 1.5em;
+			    padding: 5%;
+			}
+
+			.move {
+			  opacity: 0;
+			  transform: translate(0, 10vh);
+			  transition: all 3s;
+			}
+
+			.move.visible {
+			  opacity: 1;
+			  transform: translate(0, 0);
+			}
+
+
+			.start.fade-in {
+			animation: fadeIn ease 2s;
+			-webkit-animation: fadeIn ease 2s;
+			-moz-animation: fadeIn ease 2s;
+			-o-animation: fadeIn ease 2s;
+			-ms-animation: fadeIn ease 2s;
+			}
+			@keyframes fadeIn {
+			0% {opacity:0;}
+			100% {opacity:1;}
+			}
+
+			@-moz-keyframes fadeIn {
+			0% {opacity:0;}
+			100% {opacity:1;}
+			}
+
+			@-webkit-keyframes fadeIn {
+			0% {opacity:0;}
+			100% {opacity:1;}
+			}
+
+			@-o-keyframes fadeIn {
+			0% {opacity:0;}
+			100% {opacity:1;}
+			}
+
+			@-ms-keyframes fadeIn {
+			0% {opacity:0;}
+			100% {opacity:1;}
+			}
+
+			.start.fade-out {
+			animation: fadeOut ease 3s forwards;
+			-webkit-animation: fadeOut ease 3s forwards;
+			-moz-animation: fadeOut ease 3s forwards;
+			-o-animation: fadeOut ease 3s forwards;
+			-ms-animation: fadeOut ease 3s forwards;
+			}
+			@keyframes fadeOut {
+			0% {opacity:1;}
+			100% {opacity:0;}
+
+			}
+
+			@-moz-keyframes fadeOut {
+			0% {opacity:1;}
+			100% {opacity:0;}
+			}
+
+			@-webkit-keyframes fadeOut {
+			0% {opacity:1;}
+			100% {opacity:0;}
+			}
+
+			@-o-keyframes fadeOut {
+			0% {opacity:1;}
+			100% {opacity:0;}
+			}
+
+			@-ms-keyframes fadeOut {
+			0% {opacity:1;}
+			100% {opacity:0;}
+			}
+
+			/* ALL ABOUT THE GRAPHIC DIV */
+			.graphic{
+				width: 100%;
+			    max-width: 630px;
+			    height: auto;
+			    margin: 0 auto 0 auto ;
+			}
+			.graphicmedium{
+			    max-width: 960px;
+			    width: 100%;
+			    height: auto;
+			    margin: 0 auto 0 auto ;
+			}
+			.graphicwide{
+			    max-width: 1200px;
+			    width: 100%;
+			    height: auto;
+			    margin: 0 auto 0 auto ;
+			}
+
+			.graphic h4, .graphicwide h4, .graphicmedium h4  {
+			    padding: 0;
+			    margin: 50px 0 4px 0;
+			    font-family:  'Domine', serif;
+			    font-weight: bold;
+			    font-size: 1.5em;
+			    line-height: 1.5em;
+			    z-index: 2000;
+			    }
+
+			.graphic p, p {
+			    width: 100%;
+			    padding: 5px 0;
+			    margin: 0 0 8px 0;
+			    font-family:  'Domine', serif;
+			    font-size: 1em;
+			    line-height: 1.5em;
+			    z-index: 2000;
+			    }
+
+			.graphic img, .graphicmedium img, .graphicwide img{
+			    width: 100%;
+			    height: auto;
+			    z-index: 1000;
+			    }
+
+			.graphic div{
+			    /*width: 100%;*/
+			    height: auto;
+			    z-index: 1000;
+			}
+
+			.graphicwide video{
+					width: 100% !important;
+					margin: auto;
+			}
+
+
+			/*Tableau style */
+			.tableauPlaceholder iframe {
+				margin: auto !important;
+			}
+
+			/* 1-2-3 PANEL STYLES */
+
+			.tab-nav a {
+			    background: none repeat scroll 0 0 white;
+			    border: 1px solid black;
+			    color: black;
+			    display: inline-block;
+			    font-size: 12px;
+			    font-weight: bold;
+			    margin: 0 4px 0 0;
+			    border-radius: 100%;
+			    padding: 4px 4px;
+			    width: 14px;
+			    text-align: center;
+			    text-decoration: none;
+			    font-family: sans-serif;
+			    line-height: 14px;
+			}
+
+			#next_panel {
+				width: 70px;
+				border-radius: 15px;
+			}
+
+			.tab-nav a.activeSlide {
+			    background: none repeat scroll 0 0 white;
+			    color: black;
+			}
+
+			.tab-nav {
+			    width: auto !important;
+			    float: left;
+			    margin: 10px 10px 0 0;
+			    height: 44px;
+			}
+
+			.tab-wrapper {
+			    margin: 0 auto -1px auto;
+			    height: 20px;
+			}
+
+			#panel_graphic {
+			    margin: 10px 0 0 0;
+			    position: relative;
+			    width: 100% !important;
+			}
+
+
+
+			.panel {
+			    position: relative;
+			    display: block;
+			    left: 0;
+			    opacity: 1;
+			    padding: 10px;
+			    z-index: 4;
+			    background-color: white;
+					width: 100%;
+			}
+
+			.title{
+				font-family: 'Open Sans', sans-serif;
+				font-size: 1em;
+				width: 450px;
+				margin-left: 40px;
+			}
+
+
+			/* TABBED PANEL GRAPHIC */
+
+			#slideshow-wrapper {margin: 20px 0 10px 0; color: black;}
+			#slideshow-nav  {height: auto;float: left;z-index: 1000;}
+			#slideshow-nav li {
+			    border: 1px solid #999999;
+			    border-bottom: 1px solid white;
+			    border-radius: 10px 10px 0 0;
+			    padding: 10px 10px 5px 10px;
+			    display: block;
+			    float: left;
+			    zoom: 1;
+			    filter: alpha(opacity=50);
+			    opacity: 0.5;
+			    margin: 0 0 0 5px;
+			    width: 15%;
+			    font-family: arial, sans-serif;
+			    font-size: 12px;
+			    line-height: 14px;
+			    text-align: center;
+			    height: auto;
+			    vertical-align: top;
+			    background-color: none;
+					color: black;
+			}
+
+			#slideshow-nav li img {width: 100%;}
+			.nav-container {z-index: 2000;}
+			#slideshow-nav li.first {margin-left: 6px;}
+			#slideshow-nav li:hover {zoom: 1;filter: alpha(opacity=100);opacity: 1; background-color: white;}
+			#slideshow-nav li.activeSlide  {filter:alpha(opacity=100);opacity:1; background-color: white;font-weight: bold;border-bottom:2px solid white;z-index: 1000;}
+			#slidescontainer2 {
+    position: relative;
+    overflow: visible;
+}
+			#slideshow {position: relative;width: 100% !important;}
+			.slide {width: 100% !important; position: absolute;text-align: left;padding: 10px 20px 0 20px; display: none;background-color: white;z-index: 1;}
+
+			.horiz-line1 {margin-top: -1px;border-top: 1px solid #999999;z-index:100;}
+			#prev-btn, #next-btn {display: inline;float: left;margin-top: 10px;padding: 0px 0px 0 10px;width: 31px;text-align: left;vertical-align: middle;z-index: 20;}
+			#next-btn {text-align: right;}
+			#arrowfull {zoom: 1;filter: alpha(opacity=100);opacity: 1;}
+			#arrowfaint {zoom: 1;filter: alpha(opacity=20);opacity: 0.4;}
+
+			/* TABBED PANEL WITH IMAGES */
+
+			#slideshow-wrapper2 {margin: 20px 0 10px 0; color: black;}
+			#slideshow-nav2  {height: auto;float: left;z-index: 1000;}
+			#slideshow-nav2 li {
+			    border: 1px solid #999999;
+			    border-bottom: 1px solid white;
+			    border-radius: 10px 10px 0 0;
+			    padding: 10px 10px 5px 10px;
+			    display: block;
+			    float: left;
+			    zoom: 1;
+			    filter: alpha(opacity=50);
+			    opacity: 0.5;
+			    margin: 0 0 0 5px;
+			    width: 15%;
+			    font-family: arial, sans-serif;
+			    font-size: 12px;
+			    line-height: 14px;
+			    text-align: center;
+			    height: auto;
+			    vertical-align: top;
+			    background-color: white;
+			    color: black;
+			}
+
+			#slideshow-nav2 li img {width: 100%; color: white; padding-top: 10px;}
+			.nav-container2 {z-index: 2000;}
+			#slideshow-nav2 li.first {margin-left: 6px;}
+			#slideshow-nav2 li:hover {zoom: 1;filter: alpha(opacity=100);opacity: 1; background-color: white;}
+			#slideshow-nav2 li.activeSlide  {filter:alpha(opacity=100);opacity:1; background-color: white;font-weight: bold;border-bottom:2px solid white ;z-index: 1000;}
+			#slidescontainer2 {position: relative; overflow: hidden;}
+			#slideswithimages { position: relative; width: 100% !important;}
+			.slidewithimage {
+			display: none;
+			padding: 20px;
+			background-color: white;
+			margin-top: 30px;
+}
+
+			.horiz-line1 {margin-top: -1px;border-top: 1px solid #999999;z-index:100;}
+			#prev-btn, #next-btn {display: inline;float: left;margin-top: 10px;padding: 0px 0px 0 10px;width: 31px;text-align: left;vertical-align: middle;z-index: 20;}
+			#next-btn {text-align: right;}
+			#arrowfull {zoom: 1;filter: alpha(opacity=100);opacity: 1;}
+			#arrowfaint {zoom: 1;filter: alpha(opacity=20);opacity: 0.4;}
+
+			/* NUMBERED DOTS */
+
+				.dots{
+				    position: relative;
+				}
+
+				.dot {
+				    background-color: #DF7527;
+				    color: white;
+				    text-align: center;
+				    vertical-align: middle;
+				    padding: 0;
+				    line-height: 20px;
+				    font-family: sans-serif;
+				    font-size: 14px;
+				    width: 20px !important;
+				    height: 20px !important;
+				    border-radius: 20px;
+				    border: 1px solid #ffffff;
+				    box-shadow: 1px 1px 1px #000000;
+				    cursor: pointer;
+				    z-index: 999;
+				}
+
+				.dots #parent {
+				  position: absolute;
+				  width: auto;
+				}
+
+				#parent a {
+					text-decoration: none;
+				}
+
+				#popup {
+					position: absolute;
+					background-origin: bottom left;
+					left: -75px;
+					bottom: 45px;
+
+				  border: solid 1px #666666;
+				  background-color: white;
+				  box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+				  padding: 10px;
+				  font-family: 'Open Sans', sans-serif;
+				  font-size: 0.9em;
+				  line-height: 1.2em;
+				  width: 160px;
+				  color: black;
+				}
+
+				#parent #popup::after {
+				  content: "";
+				  position: absolute;
+				  top: 100%;
+				  left: 45%;
+				  margin-left: -5px;
+				  border-width: 10px;
+				  border-style: solid;
+				  border-color: black transparent transparent transparent;
+				}
+
+				#popup div {
+					width: 100%;
+					margin: auto;
+				}
+
+				#parent #popup {
+				  display: none;
+				  min-width: 250px;
+				}
+
+				#parent:hover #popup {
+				  display: block;
+				}
+
+				#parent:hover {
+				  z-index: 5000;
+				}
+
+				/* RESPONSIVE STYLE BREAKPOINT REFERENCE
+					big desktops: 1400px;
+					most laptops: 1100px;
+					iPad portrait: 768px;
+					phones: 480px;
+					smaller phones: 300px;*/
+
+				@media screen and (max-width: 1400px){
+					/*use these classes to switch out three levels of images with hard-to-read text*/
+					.hide-desktop {display:block;}
+					.hide-desktop {display:none;}
+					.hide-tablet {display:none;}
+				}
+
+				@media screen and  (max-width: 1100px){
+				}
+
+				@media screen and  (max-width: 768px){
+					.hide-desktop {display:none;}
+					.hide-tablet {display:block;}
+				}
+
+				@media screen and  (max-width: 480px){
+					.hide-desktop {display:none;}
+					.hide-tablet {display:none;}
+					.hide-mobile {display:block;}
+
+					/*making fonts a bit smaller*/
+					.graphic h4 {font-size:1.5em;}
+					.graphic p {font-size:0.9em; line-height: 1.4em;}
+					.graphic {width: 100%; max-width: 1200px;}
+					.centered {max-height: none;}
+				}
+
+				@media screen and  (max-width: 300px){
+					.graphic h4 {font-size:1.5em;}
+					.graphic p {font-size:0.9em; line-height: 1.4em;}
+					.graphic {width: 100%; max-width: 1200px;}
+					.centered {max-height: none;}
+				}
+				#slideshow-nav2 {
+    display: flex;
+    gap: 20px;
+}
+
+.tab {
+    border: 2px solid #bbb;
+    border-radius: 20px;
+    padding: 20px;
+    width: 220px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+	height: 300px;
+
+}
+
+.tab:hover {
+    background-color: #f2f2f2;
+}
+
+.active {
+    background-color: #e5e5e5;
+}
+
+.slidewithimage {
+    display: none;
+    margin-top: 40px;
+}
+
+.active-slide {
+    display: block;
+}
+.slidewithimage {
+    display: none;
+}
+
+.active-slide {
+    display: block;
+    margin-top: 40px;
+}
+#slidescontainer2 {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.slidewithimage {
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    padding: 30px;
+    font-size: 18px;
+}
+.slide-content {
+    display: none;
+    margin-top: 15px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.tab.active .slide-content {
+    display: block;
+}
+.nav-container2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;  /* centers the whole row */
+}
+
+#slideshow-nav2 {
+    display: flex;
+    flex-direction: row;      /* keeps them side-by-side */
+    gap: 20px;
+    justify-content: center;  /* keeps items grouped in center */
+    align-items: flex-start;
+}
+#slideshow-wrapper2 {
+    width: 100%;
+    clear: both;
+}
+.graphic {
+    width: 100%;
+    display: block;
+}
+.graphic:last-of-type {
+    clear: both;
+}
+		</style>
+
+</head>
+
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- THE PAGE YOU SEE STARTS HERE!!!!!!!!!  -->
+		<!-- OPTIONS-YOU DON'T HAVE TO DO THESE:
+				1. If you want a fixed background image behind the whole graphic, add URL between parenthesis below.
+				2. If you would prefer a white template, change the background color to white, and the color to black (that's the color of the text) / -->
+
+<body id="site" class="base" style="background-image: url(); background-color: white; color: black;">
+
+
+<!-- INTRO SECTION//////////////////////// -->
+		<!-- OPTIONS:
+				1. Add the link to your opening image between the parenthesis below. Do not do this AND a fixed background image behind the whole graphic. -->
+
+				<div class="coveropener start fade-in" style="background-image: url(images/backillo.png);">
+
+		<!-- MANDATORY CHANGES:
+				1. Fill in the headline (H1)
+				2. Put your name in the XXXXsw
+				3. Change the date
+				4. Play with the opacity of the rectangle box by changing the decimal. 0 is completely transparent, 1 is completely black. You can also change the color by messing with the RGB values (0,0,0) -->
+					<div class="centered" style="background-color: rgb(255, 255, 255, 0.5); min-height: 500px">
+						<h1>Running on caffeine: How much is too much?</h1>
+						<p>By Gabi Mays<a href="/accounts/profiles/xxxxx/"></a> | April 28, 2026</p>
+						<p>More than 85% of U.S. adults consume caffeine daily, averaging about 180 miligrams per day. From coffee and soda to energy drinks and supplements, caffeine has become part of many people's routines. While moderate intake is considered generally safe, higher amounts can increase the risk of negative health affects like anxiety, sleep disruption, and increased heart rate. Caffeine intake also varies with age, with consumption generally increasing into adulthood. Understanding how much you're consuming and how it compares to recommended limits can help you make more informed choices about your daily routine.</p>
+					</div>
+				</div>
+
+<!-- END OF INTRO SECTION ////////////////////// -->
+
+<!-- BEGIN SINGLE LAYER - SIMPLE IMAGE -->
+
+			<div class="graphic">
+					<h4>Do you know how much caffeine you're actually consuming?</h4>
+					<p></p>
+			</div>
+<div class="graphicmedium move">
+
+					<div class="dots">
+
+							<div id="parent" style="left: 4.3%; top: 6%;">
+								<div class="dot" style="background-color: #e54d4d;" title="" >1</div>
+								<div id="popup">
+									<strong>12 ounce Alani Energy Drink</strong>
+									<br>
+									Alani has this 200 mg of caffeine in each can.
+									<div style="padding-top: 3%">
+			
+									</div>
+								</div>
+							</div>
+
+							<div id="parent" style="left: 19.3%; top: 6%;">
+								<div class="dot" style="background-color: #e54d4d;" title="" >2</div>
+								<div id="popup">
+									<strong>16 ounce Black Coffee</strong>
+									<br>
+									Caffeine ranges from 160 to 300mg in a cup of black coffee.
+									<div style="padding-top: 3%">
+										<!--  <img src="images/sampleimage.jpg"> -->
+									</div>
+								</div>
+							</div>
+
+							<div id="parent" style="left: 35.1%; top: 6%;">
+								<div class="dot" style="background-color: #e54d4d;" title="" >3</div>
+								<div id="popup">
+									<strong>12 ounce Soda Can</strong>
+									<br>
+									One can of soda has between 35 to 70 mg.
+									<div style="padding-top: 3%">
+									</div>
+								</div>
+							</div>
+							<div id="parent" style="left: 50%; top: 6%;">
+								<div class="dot" style="background-color: #e54d4d;" title="" >4</div>
+								<div id="popup">
+									<strong>Pre-Workout</strong>
+									<br>
+									One scoop of pre-workout can have between 150 to 300 mg.									<div style="padding-top: 3%">
+									</div>
+								</div>
+							</div>
+							<div id="parent" style="left: 66.5%; top: 6%;">
+								<div class="dot" style="background-color: #e54d4d;" title="" >5</div>
+								<div id="popup">
+									<strong>160 gram Chocolate Bar</strong>
+									<br>
+									One chocolate bar contains 70 mg of caffeine.
+									<div style="padding-top: 3%"> 
+									</div>
+								</div>
+							</div>
+							<div id="parent" style="left: 79%; top: 6%;">
+								<div class="dot" style="background-color: #e54d4d;" title="" >6</div>
+								<div id="popup">
+									<strong>16 ounce Black Tea</strong>
+									<br>
+									One cup of black tea contains 90 mg of caffeine.
+									<div style="padding-top: 3%">
+									</div>
+								</div>
+							</div>
+							<div id="parent" style="left: 93%; top: 6%;">
+								<div class="dot" style="background-color: #e54d4d;" title="" >7</div>
+								<div id="popup">
+									<strong>16 ounce Iced Coffee</strong>
+									<br>
+									One cup of iced coffee can contain between 150 to 300 mg of caffeine.
+									<div style="padding-top: 3%">
+									</div>
+								</div>
+							</div>
+							<div><img src="images/caffeinegraphic.png"></div> <!--  Important: background needs to be inside of div.-->
+						</div>
+
+			</div>
+		<div class="graphic">
+					<h4></h4>
+					<p>A lot of people think of caffeine as just coffee or energy drinks, but it stacks up throughout the day from smaller sources like tea, soda, chocolate, pre-workout, and even some medications. Caffeine has a half-life of 5 to 6 hours, a 2 p.m. coffee can still be in your system at bedtime, which can quietly affect sleep quality.</p>
+			</div>
+<br>
+<br>
+<!-- END SINGLE LAYER - SIMPLE IMAGE -->
+
+							<center>
+					          <iframe title="Average daily caffeine intake by age group" aria-label="Column Chart" id="datawrapper-chart-Qaf7P" src="https://datawrapper.dwcdn.net/Qaf7P/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 50% !important; border: none;" height="504" data-external="1"></iframe><script type="text/javascript">window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}});</script>
+							</center>
+							  <br>
+			<br>
+			</div>
+</div>
+
+<!-- END SINGLE LAYER - SIMPLE IMAGE WITH TEXT BETWEEN IMAGES -->
+<!-- BEGIN SINGLE LAYER - SIMPLE IMAGE WITH TEXT BETWEEN IMAGES /-->
+
+		
+			<br>
+			<br>
+			<br>
+			<center>
+			<iframe title="Actual vs. Recommended Caffeine Intake" aria-label="Line chart" id="datawrapper-chart-DNJWg" src="https://datawrapper.dwcdn.net/DNJWg/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 50% !important; border: none;" height="518" data-external="1"></iframe><script type="text/javascript">window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}});</script>
+			</center>
+			<div class="graphic move">
+
+				<!-- Change image name below, or replace the entire line with embed code. -->
+<br>
+<br>
+<br>
+<br>
+					
+			</div>
+			<div class="gif graphic"></div>
+				<h2><center>What happens as intake increases?</center></h2>
+				<div><center><img src=images/Caffeinegif.gif style="max-width: 40%;"></center>
+				</div>
+<br>
+
+<br>
+			<div class="graphic">
+					<h4></h4>
+					<p>Caffeine consumption isn't just about how much you drink, it's also about how consistently you consume it throughout the day. Caffeine is found in so many everyday products, small amounts can quickly add up without much awareness. This makes it easy for regular users to approach higher intake levels over time.</p>
+			</div>
+
+<br>
+	
+		<div class="graphic move">
+
+					<div id="slideshow-wrapper2">
+
+		            <div class="nav-container2">
+    <div id="slideshow-nav2">
+<div class="tab" onclick="showSlide(0)">
+    <strong>Pregnant women</strong><br>
+    <img src="images/pregwoman.jpg" alt="">
+
+    <div class="slide-content">
+        Caffeine stays in the body longer during pregnancy and may increase risks like low birth weight or miscarriage.
+    </div>
+</div>
+
+<div class="tab" onclick="showSlide(1)">
+    <strong>Children and adolescents</strong><br>
+    <img src="images/children.jpg" alt="">
+
+    <div class="slide-content">
+        Smaller body sizes make caffeine's effects stronger, increasing risk of sleep distruption and heart-related effects.
+    </div>
+</div>
+
+<div class="tab" onclick="showSlide(2)">
+    <strong>People with heart conditions</strong><br>
+    <img src="images/heartcondition.jpg" alt="">
+
+    <div class="slide-content">
+        Can raise heart rate and blood pressure, potentially triggering irregular rhythms.
+    </div>
+</div>
+
+<div class="tab" onclick="showSlide(3)">
+    <strong>People sensitive to caffeine</strong><br>
+    <img src="images/senstocaffeine.jpg" alt="">
+
+    <div class="slide-content">
+        May experience anxiety, jitters, or sleep issues even at low doses.
+    </div>
+</div>
+</div> <!-- closes #slideshow-nav2 -->
+</div> <!-- closes .nav-container2 -->
+</div> <!-- closes .graphic.move -->
+</div> <!-- closes #slideshow-wrapper2 -->
+<div class="graphic" style="color: #666666;">
+    <p></p>
+</div>
+
+</div>
+
+
+<!-- END SINGLE LAYER - SIMPLE IMAGE WITH TEXT BETWEEN IMAGES -->
+
+
+
+<!-- BEGIN SOURCES/PHOTO CREDITS -->
+<br>
+
+
+
+
+
+
+<br>
+
+<div class="graphic" style="color: #666666;"><p>Source: National Library of Medicine.</p></div>
+
+<!-- END SOURCES/PHOTO CREDITS -->
+
+
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- END OF GRAPHIC TEMPLATE ELEMENTS  -->
+<!-- DO NOT MODIFY OR DELETE ANYTHING BELOW HERE. -->
+
+				<script>
+					$(document).on("scroll", function() {
+					  var pageTop = $(document).scrollTop();
+					  var pageBottom = pageTop + $(window).height();
+					  var moves = $(".move");
+					  var start = $(".start");
+
+					  for (var i = 0; i < moves.length; i++) {
+					    var move = moves[i];
+
+						if ($(move).position().top < pageBottom) {
+						      $(move).addClass("visible");
+						    } else {
+						      $(move).removeClass("visible");
+						    }
+						}
+						if ($(start).position().top = pageTop)  {
+						      $(start).addClass("fade-out");
+						      $(start).removeClass("fade-in");
+						    } else {
+						      $(start).addClass("fade-in");
+						      $(start).removeClass("fade-out");
+						    }
+					});
+				</script>
+
+				<script>
+function showSlide(index) {
+
+    let tabs = document.querySelectorAll('.tab');
+
+    tabs.forEach(tab => {
+        tab.classList.remove('active');
+    });
+
+    tabs[index].classList.add('active');
+}
+</script>
+	</body>
+</html>
